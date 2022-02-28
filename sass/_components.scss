@@ -1,0 +1,62 @@
+.attribution {
+  position: absolute;
+  bottom: 0;
+  font-size: 11px;
+  text-align: center;
+  a {
+    color: hsl(228, 45%, 44%);
+  }
+}
+
+.advice-card {
+  position: relative;
+  grid-column: content-start / content-end;
+  background-color: var(--DarkGrayishBlue);
+  width: 60rem;
+  height: 40rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  &__id {
+    letter-spacing: 3px;
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--NeonGreen);
+  }
+  &__qoute {
+    width: 75%;
+    text-align: center;
+    color: var(--LightCyan);
+    font-size: 2.8rem;
+    font-weight: 800;
+    &::before,
+    &::after {
+      font-size: 4rem;
+    }
+    &::before {
+      content: open-quote;
+    }
+    &::after {
+      content: close-quote;
+    }
+  }
+  &__divider {
+    margin-bottom: 7rem;
+  }
+  &__btn {
+    background-color: var(--NeonGreen);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(50%);
+    padding: 1.5rem;
+    border-radius: 50%;
+  }
+}

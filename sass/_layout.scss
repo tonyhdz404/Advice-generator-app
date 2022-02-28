@@ -1,0 +1,7 @@
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: [left-start]1fr [left-end content-start] min-content [content-end right-start] 1fr[right-end];
+}
