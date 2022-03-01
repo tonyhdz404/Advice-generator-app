@@ -59,22 +59,25 @@ body {
   width: 60rem;
   height: 40rem;
   border-radius: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 10.4rem 1fr 8.4rem;
+      grid-template-rows: 10.4rem 1fr 8.4rem;
+  justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
+.advice-card__body {
+  -ms-flex-preferred-size: 1;
+      flex-basis: 1;
+}
+
 .advice-card__id {
   letter-spacing: 3px;
-  margin-top: 5rem;
-  margin-bottom: 4rem;
   font-size: 1.8rem;
   font-weight: 500;
   color: var(--NeonGreen);
@@ -82,26 +85,48 @@ body {
 
 .advice-card__qoute {
   width: 75%;
+  height: 50%;
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.advice-card__heading {
+  color: var(--LightCyan);
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.advice-card__text {
   color: var(--LightCyan);
   font-size: 2.8rem;
   font-weight: 800;
 }
 
-.advice-card__qoute::before, .advice-card__qoute::after {
+.advice-card__text::before, .advice-card__text::after {
   font-size: 4rem;
+  line-height: 0;
 }
 
-.advice-card__qoute::before {
+.advice-card__text::before {
   content: open-quote;
 }
 
-.advice-card__qoute::after {
+.advice-card__text::after {
   content: close-quote;
 }
 
 .advice-card__divider {
-  margin-bottom: 7rem;
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
 }
 
 .advice-card__btn {
@@ -122,6 +147,47 @@ body {
           transform: translateY(50%);
   padding: 1.5rem;
   border-radius: 50%;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.advice-card__btn:hover {
+  -webkit-box-shadow: 0 0 3.2rem 1rem var(--NeonGreen);
+          box-shadow: 0 0 3.2rem 1rem var(--NeonGreen);
+}
+
+.advice-card__btn:active {
+  -webkit-transform: translateY(5px);
+          transform: translateY(5px);
+}
+
+.spinner__icon {
+  fill: var(--NeonGreen);
+  -webkit-animation: spin 2s infinite linear;
+          animation: spin 2s infinite linear;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 .container {

@@ -11,6 +11,7 @@
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
+    <script defer src="/src/script.js"></script>
     <link rel="stylesheet" href="/css/main.css" />
 
     <title>Frontend Mentor | Advice generator app</title>
@@ -21,11 +22,14 @@
   <body>
     <main class="container">
       <section class="advice-card">
-        <span class="advice-card__id">Advice #117</span>
-        <p class="advice-card__qoute">
-          It is easy to sit up and take notice, what's difficult is getting up
-          and taking action.
-        </p>
+        <span class="advice-card__id">Advice <span id="advice-id"></span></span>
+
+        <div class="advice-card__qoute">
+          <h1 class="advice-card__heading">
+            Click Button to Generate Some Advice 📃
+          </h1>
+        </div>
+
         <img
           class="advice-card__divider"
           src="./images/pattern-divider-desktop.svg"

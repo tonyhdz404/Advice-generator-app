@@ -15,27 +15,45 @@
   width: 60rem;
   height: 40rem;
   border-radius: 2rem;
-  display: flex;
-  flex-direction: column;
-
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10.4rem 1fr 8.4rem;
+  justify-items: center;
   align-items: center;
+  // 24
+  // 1fr
+  // 24
+  &__body {
+    flex-basis: 1;
+  }
   &__id {
     letter-spacing: 3px;
-    margin-top: 5rem;
-    margin-bottom: 4rem;
+
     font-size: 1.8rem;
     font-weight: 500;
     color: var(--NeonGreen);
   }
   &__qoute {
     width: 75%;
+    height: 50%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__heading {
+    color: var(--LightCyan);
+    font-size: 3rem;
+    font-weight: 800;
+  }
+  &__text {
     color: var(--LightCyan);
     font-size: 2.8rem;
     font-weight: 800;
     &::before,
     &::after {
       font-size: 4rem;
+      line-height: 0;
     }
     &::before {
       content: open-quote;
@@ -45,7 +63,7 @@
     }
   }
   &__divider {
-    margin-bottom: 7rem;
+    align-self: start;
   }
   &__btn {
     background-color: var(--NeonGreen);
@@ -58,5 +76,30 @@
     transform: translateY(50%);
     padding: 1.5rem;
     border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.5s;
+    &:hover {
+      box-shadow: 0 0 3.2rem 1rem var(--NeonGreen);
+    }
+    &:active {
+      transform: translateY(5px);
+    }
+  }
+}
+
+.spinner {
+  &__icon {
+    fill: var(--NeonGreen);
+    animation: spin 2s infinite linear;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
