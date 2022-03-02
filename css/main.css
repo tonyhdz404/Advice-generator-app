@@ -39,6 +39,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .attribution {
@@ -162,6 +163,26 @@ body {
           transform: translateY(5px);
 }
 
+.advice-card__bookmark {
+  position: absolute;
+  fill: var(--LightCyan);
+  height: 4rem;
+  width: 6rem;
+  top: 2rem;
+  right: 3rem;
+  cursor: pointer;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+.bookmarked {
+  fill: var(--NeonGreen);
+}
+
+.hidden {
+  display: none;
+}
+
 .spinner__icon {
   fill: var(--NeonGreen);
   -webkit-animation: spin 2s infinite linear;
@@ -188,6 +209,111 @@ body {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
+}
+
+.nav {
+  width: 100vw;
+  height: 10rem;
+  position: absolute;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.nav__show-bookmarks {
+  position: relative;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 15rem;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  border: transparent solid 3px;
+  border-radius: 3px;
+  padding: 0 2rem;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+.nav__show-bookmarks span {
+  margin-left: 1rem;
+  color: var(--LightCyan);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.nav__show-bookmarks:hover {
+  border: var(--LightCyan) solid 3px;
+}
+
+.nav__bookmark-icon {
+  fill: var(--LightCyan);
+  height: 4rem;
+  width: 4rem;
+  top: 2rem;
+  right: 3rem;
+  cursor: pointer;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+.nav__show-bookmarks:hover .nav__bookmark-display {
+  opacity: 1;
+}
+
+.nav__bookmark-display:hover {
+  opacity: 1;
+}
+
+.nav__bookmark-display {
+  background-color: var(--LightCyan);
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  -webkit-transform: translateY(100%) translateX(-70px);
+          transform: translateY(100%) translateX(-70px);
+  width: 30rem;
+  height: 50rem;
+  padding-top: 2rem;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+.nav__bookmark-display-list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2rem;
+}
+
+.nav__bookmark-display-list-item:last-child {
+  margin-bottom: 0;
+}
+
+.list-text {
+  color: var(--DarkGrayishBlue);
+  display: inline-block;
+  font-size: 1.7rem;
+}
+
+.qoute__icon {
+  height: 4rem;
+  width: 4rem;
+  fill: var(--DarkGrayishBlue);
 }
 
 .container {
