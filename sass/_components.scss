@@ -9,6 +9,7 @@
 }
 
 .advice-card {
+  z-index: 1;
   position: relative;
   grid-column: content-start / content-end;
   background-color: var(--DarkGrayishBlue);
@@ -129,7 +130,7 @@
   display: flex;
   align-items: center;
   justify-content: end;
-  &__show-bookmarks {
+  &__bookmarks {
     position: relative;
     cursor: pointer;
     display: flex;
@@ -150,6 +151,14 @@
       border: var(--LightCyan) solid 3px;
     }
   }
+  &__bookmarks:hover ~ &__bookmark-list {
+    visibility: visible;
+    opacity: 1;
+  }
+  &__bookmark-list:hover {
+    visibility: visible;
+    opacity: 1;
+  }
   &__bookmark-icon {
     fill: var(--LightCyan);
     height: 4rem;
@@ -159,32 +168,38 @@
     cursor: pointer;
     transition: all 0.25s;
   }
-  &__show-bookmarks:hover &__bookmark-display {
-    opacity: 1;
-  }
-  &__bookmark-display:hover {
-    opacity: 1;
-  }
-  &__bookmark-display {
-    background-color: var(--LightCyan);
-    opacity: 0;
 
+  &__bookmark-list {
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 7px;
+    z-index: 10;
+    background-color: var(--LightCyan);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
     position: absolute;
     bottom: 0;
+    right: 31px;
     transform: translateY(100%) translateX(-70px);
     width: 30rem;
-    height: 50rem;
-    padding-top: 2rem;
+    min-height: 8.15rem;
     transition: all 0.25s;
+    overflow: hidden;
   }
 
-  &__bookmark-display-list-item {
+  &__bookmark-list-item {
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
-  }
-  &__bookmark-display-list-item:last-child {
-    margin-bottom: 0;
+    padding: 2rem 0.5rem;
+    border: 1.5px solid var(--DarkGrayishBlue);
+    border-top: 0.75px;
+    cursor: pointer;
+    transition: all 0.25s;
+    &:hover {
+      background-color: var(--LightCyan-1);
+    }
   }
 }
 

@@ -3,7 +3,8 @@ const btnGenerate = document.querySelector(".advice-card__btn");
 const adviceID = document.getElementById("advice-id");
 const qouteContainer = document.querySelector(".advice-card__qoute");
 const bookmark = document.querySelector(".advice-card__bookmark");
-const bookmarkList = document.querySelector(".nav__bookmark-display-list");
+const bookmarkList = document.querySelector(".nav__bookmark-list");
+const btnBookmarks = document.querySelector(".nav__bookmarks");
 
 const state = {
   bookmarks: [],
@@ -23,15 +24,16 @@ async function getQoute() {
   renderSpinner();
   const res = await fetch(apiURL);
   const data = await res.json();
+  console.log(data);
   state.data = data.slip;
-  const qoute = data.slip.advice;
-  renderQoute(data);
+
+  renderQoute(data.slip);
 }
 function renderBookmarks() {
   let bookmarkMarkup = "";
   state.bookmarks.forEach((bookmark) => {
     bookmarkMarkup += `
-    <li class="nav__bookmark-display-list-item" data-id="${bookmark.id}">
+    <li class="nav__bookmark-list-item" data-id="${bookmark.id}">
     <svg class="qoute__icon">
     <use xlink:href="images/sprite.svg#icon-quote"></use>
     </svg>
@@ -40,6 +42,11 @@ function renderBookmarks() {
   });
   bookmarkList.innerHTML = "";
   bookmarkList.insertAdjacentHTML("afterbegin", bookmarkMarkup);
+}
+function findBookmark(id) {
+  return state.bookmarks.find((b) => {
+    return b.id === id;
+  });
 }
 
 function formatQoute(qoute) {
@@ -55,15 +62,15 @@ function formatQoute(qoute) {
 }
 
 function renderQoute(data) {
-  inBookmarks(data.slip);
+  inBookmarks(data);
 
   const qouteHTML = ` 
     <q class="advice-card__text">
-    ${data.slip.advice}
+    ${data.advice}
     </q>`;
   qouteContainer.innerHTML = "";
   adviceID.innerText = "";
-  adviceID.innerText = `#${data.slip.id}`;
+  adviceID.innerText = `#${data.id}`;
   qouteContainer.innerHTML = qouteHTML;
 }
 
@@ -85,6 +92,7 @@ function addBookmark() {
   bookmark.classList.add("bookmarked");
   state.bookmarks.push(state.data);
   console.log("Added to bookmarks", state.bookmarks);
+  renderBookmarks();
   persistBookmarks();
 }
 function removeBookmark() {
@@ -96,6 +104,7 @@ function removeBookmark() {
   console.log(index);
   state.bookmarks.splice(index, 1);
   console.log("After", state.bookmarks);
+  renderBookmarks();
   persistBookmarks();
 }
 
@@ -106,10 +115,10 @@ function persistBookmarks() {
 function inBookmarks(data) {
   console.log(
     "Qoute in Bookmarks?",
-    state.bookmarks.find((b) => b.id === state.data.id)
+    state.bookmarks.find((b) => b.id === data.id)
   );
 
-  if (!state.bookmarks.find((b) => b.id === state.data.id)) {
+  if (!state.bookmarks.find((b) => b.id === data.id)) {
     bookmark.classList.remove("bookmarked");
   } else {
     bookmark.classList.add("bookmarked");
@@ -135,4 +144,17 @@ bookmark.addEventListener("click", function (e) {
   } else {
     addBookmark();
   }
+});
+
+//? Render the Clicked on Bookmark
+bookmarkList.addEventListener("click", function (e) {
+  bookmark.classList.remove("hidden");
+  console.log("Clicked");
+  const bookmarkClicked = e.target.closest(".nav__bookmark-list-item");
+  if (!bookmarkClicked) return;
+  const bookmarkID = +bookmarkClicked.dataset.id;
+  const data = findBookmark(bookmarkID);
+  console.log(data);
+  state.data = data;
+  renderQoute(data);
 });
